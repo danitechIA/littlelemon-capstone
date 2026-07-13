@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Little Lemon - Reserve a Table{% endblock %}
+{% block content %}
+<h1>Make a reservation</h1>
+
+<div class="booking-layout">
+    <form class="booking-form" id="booking-form">
+        {% csrf_token %}
+        <label for="first_name">Name:</label>
+        <input type="text" id="first_name" name="first_name" placeholder="Your Name" required>
+
+        <label for="reservation_date">Reservation date:</label>
+        <input type="date" id="reservation_date" name="reservation_date" value="{{ today }}" required>
+
+        <label for="reservation_slot">Reservation time:</label>
+        <select id="reservation_slot" name="reservation_slot" required>
+            <option value="10:00">10 AM</option>
+            <option value="11:00">11 AM</option>
+            <option value="12:00">12 PM</option>
+            <option value="13:00">1 PM</option>
+            <option value="14:00">2 PM</option>
+            <option value="15:00">3 PM</option>
+            <option value="16:00">4 PM</option>
+            <option value="17:00">5 PM</option>
+            <option value="18:00">6 PM</option>
+            <option value="19:00">7 PM</option>
+            <option value="20:00">8 PM</option>
+        </select>
+
+        <button type="submit" class="btn">Reserve</button>
+        <p id="form-message"></p>
+    </form>
+
+    <aside class="bookings-panel">
+        <h2 id="bookings-panel-title">Bookings For {{ today }}</h2>
+        <ul id="bookings-panel-list"></ul>
+        <p id="bookings-panel-empty" style="display:none;">No Booking</p>
+    </aside>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'restaurant/js/main.js' %}"></script>
+<script>document.addEventListener('DOMContentLoaded', initBookingForm);</script>
+{% endblock %}

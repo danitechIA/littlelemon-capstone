@@ -1,0 +1,16 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.sqlite3
+
+# Virtual environment
+env/
+.venv/
+venv/
+
+# Django
+*.log
+db.sqlite3
+
+# OS
+.DS_Store
